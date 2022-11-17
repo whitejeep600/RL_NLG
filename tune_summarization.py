@@ -122,7 +122,7 @@ class ModelArguments:
     beam_size: Optional[int] = field(
         default=None
     )
-    p: Optional[int] = field(
+    p: Optional[float] = field(
         default=None
     )
     k: Optional[int] = field(
@@ -419,12 +419,11 @@ def main():
         gen_kwargs['top_p'] = model_args.p
     elif model_args.decoder == 'top_k':
         assert model_args.k is not None, 'Please provide a k for top-k search decoding (--k=x)'
-        gen_kwargs['penalty_alpha'] = 0.5  # todo
         gen_kwargs['top_k'] = model_args.k
     else:
         if training_args.do_predict or training_args.do_eval:
             raise Exception('Please provide a decoding method. (--decoder)')
-    #gen_kwargs['temperature'] = model_args.temperature
+    gen_kwargs['temperature'] = model_args.temperature
 
     model.resize_token_embeddings(len(tokenizer))
 
