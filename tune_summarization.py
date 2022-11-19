@@ -368,8 +368,11 @@ def main():
         if data_args.test_file is not None:
             data_files["test"] = data_args.test_file
             extension = data_args.test_file.split(".")[-1]
-        features = Features({'text': Value(dtype='string', id=None)})
-                             #'summary': Value(dtype='string', id=None)}) only for predicting
+        if training_args.do_train:
+            features = Features({'text': Value(dtype='string', id=None),
+                                 'summary': Value(dtype='string', id=None)}) 
+        else:
+            features = Features({'text': Value(dtype='string', id=None)})
         raw_datasets = load_dataset(
             extension,
             data_files=data_files,

@@ -6,3 +6,7 @@ To run prediction, the following packages are required:
 - sentencepiece
 - nltk
 - torch
+
+To fine-tune (with the same packages available), call
+
+./tune.sh path/to/train.jsonl
