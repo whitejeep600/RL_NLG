@@ -6,7 +6,7 @@ python3.9 tune_summarization.py \
     --source_prefix "summarize: " \
     --output_dir 'data/predictions' \
     --decoder='beam_search' \
-    --beam_size=3 \
+    --beam_size=4 \
     --generation_max_length=64 \
     --per_device_eval_batch_size=1 \
     --overwrite_output_dir \
